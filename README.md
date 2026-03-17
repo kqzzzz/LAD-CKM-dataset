@@ -11,6 +11,7 @@ This is a dynamic MIMO-OFDM channel dataset created in a UMi campus scenario via
 + See the example of loading the dataset in `loader.py`.
 
 ## Citation
+If you find this dataset useful for your research, please cite our paper
 ``` bash
 @article{ ladckm,
   title={Location-Agnostic Channel Knowledge Map Construction for Dynamic Scenes},
