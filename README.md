@@ -13,10 +13,15 @@ This is a dynamic MIMO-OFDM channel dataset created in a UMi campus scenario via
 ## Citation
 If you find this dataset useful for your research, please cite our paper
 ``` bash
-@article{ ladckm,
-  title={Location-Agnostic Channel Knowledge Map Construction for Dynamic Scenes},
-  author={Kequan Zhou and Guangyi Zhang and Hanlei Li and Yunlong Cai and Shengli Liu and Guanding Yu},
-  journal={arXiv preprint arXiv:2603.09273},
-  year={2026}}
+@INPROCEEDINGS{ladckm,
+  author={Zhou, Kequan and Zhang, Guangyi and Li, Hanlei and Cai, Yunlong and Yu, Guanding},
+  booktitle={Proc. IEEE Int. Conf. Commun. (ICC)}, 
+  title={Location-Agnostic Channel Knowledge Map Construction for Dynamic Scenes}, 
+  month={May},
+  year={2026},
+  volume={},
+  number={},
+  pages={1-6},
+  address={Glasgow, United Kingdom}}
 ```
 
