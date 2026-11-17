@@ -5,7 +5,7 @@ from typing import List
 
 
 class DynamicDatasetLoader:
-    def __init__(self, dataset_file='datasets/Tx4x8_Rx2x2.npy',
+    def __init__(self, dataset_file='datasets/Tx4x4_Rx2x2.npy',
                  norm=False, ratio=0.8, train=True) -> None:
         self.dataset = np.load(dataset_file, allow_pickle=True)
         self.dataset = [frame["csi"] for frame in self.dataset]                 # List of [n_rx, Nr, Nt, 2 * Nc]
@@ -135,6 +135,6 @@ class DynamicDatasetLoader:
 
 if __name__ == '__main__':
     
-    dataset_file = f"datasets/Tx4x8_Rx2x2.npy"
+    dataset_file = f"datasets/Tx4x4_Rx2x2.npy"
     loader_train = DynamicDatasetLoader(dataset_file=dataset_file, train=True, ratio=0.8)
     loader_test = DynamicDatasetLoader(dataset_file=dataset_file, train=False, ratio=0.8)

@@ -1,0 +1,4 @@
+generated/
+logs/
+__pycache__/
+*.blend1

@@ -1,0 +1,6 @@
+--extra-index-url https://download.pytorch.org/whl/cu118
+torch==2.7.1+cu118
+sionna-rt==1.1.0          # pulls mitsuba==3.6.2 and drjit==1.0.3
+numpy==2.3.5
+omegaconf==2.3.0
+tqdm==4.67.1

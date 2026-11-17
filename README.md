@@ -10,6 +10,15 @@ This is a dynamic MIMO-OFDM channel dataset created in a UMi campus scenario via
 ## Usage
 + See the example of loading the dataset in `loader.py`.
 
+## Dataset Generation
+The code for generating the dataset is in [`generation/`](generation/). To generate the default configuration ($N_t = 16$, $N_r = 4$):
+``` bash
+cd generation
+pip install -r requirements.txt
+python generate.py
+```
+Antenna arrays, frequencies, ray-tracing settings, and scatterer densities can be changed in [`generation/configs/default.yaml`](generation/configs/default.yaml) or on the command line. See [`generation/README.md`](generation/README.md) for details.
+
 ## Citation
 If you find this dataset useful for your research, please cite our paper
 ``` bash
