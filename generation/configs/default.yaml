@@ -1,0 +1,63 @@
+# =============================================================================
+# LAD-CKM dataset generation - default configuration
+#
+# Every entry can be overridden from the command line, e.g.
+#   python generate.py tx.num_rows=4 tx.num_cols=8 rx.num_rows=1 rx.num_cols=1
+# =============================================================================
+
+seed: 0                                # seed of Python / NumPy / PyTorch RNGs and of the Sionna path solver
+
+# ----------------------------------------------------------------------------- scene
+scene:
+  path: scene/scene.xml                # relative to the generation/ folder
+  scattering_coefficient: 0.5          # for itu_marble, itu_concrete and itu_medium_dry_ground
+  xpd_coefficient: 0.5                 # cross-polarization discrimination coefficient, same materials
+  temperature: [288.15, 308.15]        # scene temperature (K), uniform in [min, max] per frame
+  pedestrian:                          # dry-ground dielectric boxes, 0.5 m x 0.5 m x 1.8 m
+    num_range: [500, 2500]             # number per frame, uniform integer in [min, max]
+    thickness: 0.25                    # material thickness (m)
+    dist_range: [[-330, 330], [-190, 190], 0.9]   # x range, y range (m), fixed z (m)
+  vehicle:                             # metal boxes, 2 m x 4 m x 1.6 m, placed on the driving lanes
+    num_range: [20, 70]                # number per frame, uniform integer in [min, max]
+
+# ----------------------------------------------------------------------------- BS (transmitter)
+tx:
+  position: [35, 10, 20]               # (x, y, z) in meters
+  power_dbm: 50
+  num_rows: 4                          # UPA rows    -> Nt = num_rows * num_cols
+  num_cols: 4                          # UPA columns
+  vertical_spacing: 0.5                # in wavelengths
+  horizontal_spacing: 0.5              # in wavelengths
+  pattern: tr38901
+  polarization: V
+
+# ----------------------------------------------------------------------------- UEs (receivers)
+rx:
+  num_rows: 2                          # UPA rows    -> Nr = num_rows * num_cols
+  num_cols: 2                          # UPA columns
+  vertical_spacing: 0.5                # in wavelengths
+  horizontal_spacing: 0.5              # in wavelengths
+  pattern: iso
+  polarization: V
+  dist_range: [[-150, 150], [-120, 120], [0, 15]]   # x, y, z ranges of UE positions (m)
+
+# ----------------------------------------------------------------------------- ray tracing (Sionna RT PathSolver)
+ray_tracing:
+  fc_up: 6.715e9                       # uplink carrier frequency (Hz)
+  fc_down: 6.765e9                     # downlink carrier frequency (Hz)
+  max_depth: 5                         # maximum number of interactions per path
+  specular_reflection: True
+  diffuse_reflection: True
+  refraction: True
+  synthetic_array: True                # trace from array centers and synthesize the array response
+  samples_per_src: 1000000             # number of rays shot per source
+  max_num_paths_per_src: 1000000       # maximum number of paths kept per source
+
+# ----------------------------------------------------------------------------- dataset
+dataset:
+  num_frame: 20                        # number of frames (coherence blocks)
+  num_rx: 2500                         # number of UEs per frame
+  num_sc: 52                           # number of subcarriers
+  sc_spacing: 312.5e3                  # subcarrier spacing (Hz)
+  save_dir: ./generated                # output folder of the .npy dataset
+  log_dir: ./logs                      # output folder of the log files
